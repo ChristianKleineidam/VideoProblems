@@ -52,30 +52,6 @@ public class VideoFragment extends Fragment{
         return view;
     }
 
-    private void playVideo(Context context){
-        final RawResourceDataSource rawResourceDataSource = new RawResourceDataSource(context);
-
-        int raw_res_id = context.getResources().getIdentifier(
-                "collect",
-                "raw",
-                context.getPackageName());
-        DataSpec dataSpec = new DataSpec(RawResourceDataSource.buildRawResourceUri(raw_res_id));
-        try {
-            rawResourceDataSource.open(dataSpec);
-
-            DataSource.Factory factory = new DataSource.Factory() {
-                @Override
-                public DataSource createDataSource() {
-                    return rawResourceDataSource;
-                }
-            };
-            MediaSource media_source = new ExtractorMediaSource.Factory(factory).createMediaSource(rawResourceDataSource.getUri());
-            mPlayer.prepare(media_source);
-
-        } catch (RawResourceDataSource.RawResourceDataSourceException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void onDestroyView() {
@@ -83,12 +59,17 @@ public class VideoFragment extends Fragment{
         super.onDestroyView();
     }
 
-    private void playVideo2(Context context){
+    private void playVideo(Context context){
+        int raw_res_id = context.getResources().getIdentifier(
+                "collect",
+                "raw",
+                context.getPackageName());
         DataSource.Factory factory = new DefaultDataSourceFactory(
                 mContext,
                 Util.getUserAgent(mContext, context.getPackageName()) ) ;
         Uri uri= Uri.parse("android.resource://"+context.getPackageName()+"/raw/collect");
-        MediaSource media_source = new ExtractorMediaSource.Factory(factory).createMediaSource(uri);
+        MediaSource media_source = new ExtractorMediaSource.Factory(factory).createMediaSource(
+                RawResourceDataSource.buildRawResourceUri(raw_res_id));
         mPlayer.prepare(media_source);
     }
 }

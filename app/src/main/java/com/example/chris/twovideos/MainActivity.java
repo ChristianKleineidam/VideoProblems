@@ -1,5 +1,6 @@
 package com.example.chris.twovideos;
 
+
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +21,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     private void createNewFragment() {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.add(R.id.contentFragment, new VideoFragment());
+        ft.replace(R.id.contentFragment, new VideoFragment());
         ft.commit();
     }
 }
