@@ -3,7 +3,6 @@ package com.example.chris.twovideos;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
@@ -20,7 +19,6 @@ import com.google.android.exoplayer2.trackselection.TrackSelection;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
@@ -50,13 +48,6 @@ public class VideoFragment extends Fragment{
         playVideo(mContext);
 
         return view;
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        mPlayer.release();
-        super.onDestroyView();
     }
 
     private void playVideo(Context context){
