@@ -67,7 +67,6 @@ public class VideoFragment extends Fragment{
         DataSource.Factory factory = new DefaultDataSourceFactory(
                 mContext,
                 Util.getUserAgent(mContext, context.getPackageName()) ) ;
-        Uri uri= Uri.parse("android.resource://"+context.getPackageName()+"/raw/collect");
         MediaSource media_source = new ExtractorMediaSource.Factory(factory).createMediaSource(
                 RawResourceDataSource.buildRawResourceUri(raw_res_id));
         mPlayer.prepare(media_source);
